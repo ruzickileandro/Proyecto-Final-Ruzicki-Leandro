@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.registro.apps.RegistroConfig',
     'apps.evento.apps.EventoConfig',
     'apps.usuario.apps.UsuarioConfig',
+    'Home',
 ]
 
 MIDDLEWARE = [
