@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Registros</title>
+</head>
+<body>
+    <h1>Lista de Registros</h1>
+    <ul>
+    {% for registro in registros %}
+        <li>{{ registro.usuario.nombre }} - {{ registro.evento.titulo }}</li>
+    {% empty %}
+        <li>No hay registros.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
