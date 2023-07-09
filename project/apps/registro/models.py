@@ -1,6 +1,6 @@
 from django.db import models
-from evento.models import Evento
-from usuario.models import Usuario
+from apps.evento.models import Evento
+from apps.usuario.models import Usuario
 
 class Registro(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
