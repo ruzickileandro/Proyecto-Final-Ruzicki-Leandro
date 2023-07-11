@@ -26,6 +26,7 @@ from apps.Home.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', home, name="home"),
+    path('usuario/', include('apps.usuario.urls', namespace='usuario')),
     #path('eventos/', evento_views.lista_eventos, name='lista_eventos'),
     #path('usuarios/', usuario_views.lista_usuarios, name='lista_usuarios'),
     #path('registros/', registro_views.lista_registros, name='lista_registros'),
