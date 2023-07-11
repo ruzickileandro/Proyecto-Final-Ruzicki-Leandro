@@ -17,6 +17,7 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 from apps.usuario import views
+from apps.Home.views import home
 #from apps.evento import views as evento_views
 #from apps.usuario import views as usuario_views
 #from apps.registro import views as registro_views
@@ -24,12 +25,11 @@ from apps.usuario import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path("", include("Home.urls")),
+    path('home/', home, name="home"),
     #path('eventos/', evento_views.lista_eventos, name='lista_eventos'),
     #path('usuarios/', usuario_views.lista_usuarios, name='lista_usuarios'),
     #path('registros/', registro_views.lista_registros, name='lista_registros'),
     #path('registro/', views.registro_view, name='registro'),
     path('crear/', views.crear_usuario, name='crear'),
-    
 ]
 

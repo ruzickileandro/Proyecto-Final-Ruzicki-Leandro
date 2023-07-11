@@ -9,7 +9,7 @@
                 <li class="nav-item"><a class="nav-link" href="#!">Sobre nosotros</a></li>
                 
             </ul>
-            <form class="d-flex" action="{% url 'registro' %}" method="post">
+            <form class="d-flex" action="{% url 'crear' %}" method="post">
                 {% csrf_token %}
                 <button class="btn btn-outline-dark" type="submit">
                     Registrarse
