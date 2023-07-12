@@ -15,4 +15,4 @@ def crear_usuario(request: HttpRequest) -> HttpResponse:
             return redirect("usuario:home")
     else: 
         form = UsuarioForm()
-    return render(request, "usuario/crear.html", {"form": form})
+    return render(request, "usuario/crear_usuario.html", {"form": form})

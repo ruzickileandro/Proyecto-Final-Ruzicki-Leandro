@@ -1,0 +1,98 @@
+{% load static %}
+
+<style>
+    body {
+        background-color: #343a40;
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-top: 50px;
+    }
+
+    .form-container form {
+        display: flex;
+        align-items: center;
+    }
+
+    .form-container input[type="text"] {
+        padding: 10px;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .form-container button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .form-container button:hover {
+        background-color: #0056b3;
+    }
+
+    .resultados-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .resultados-container ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .resultados-container li {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .resultados-container h3 {
+        color: #007bff;
+        margin-bottom: 5px;
+    }
+
+    .resultados-container p {
+        margin-bottom: 5px;
+    }
+
+    .resultados-container p.fecha {
+        font-style: italic;
+        color: #888;
+    }
+
+    .resultados-container p.no-eventos {
+        color: #ff0000;
+    }
+</style>
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-5 fw-bolder">
+                {% block contenido %}
+                Eventos deportivos Santa Fe
+                {% endblock %}
+            </h1>
+            <div class="form-container">
+                <form id="buscar-form" action="{% url 'evento:buscar_eventos' %}" method="GET">
+                    <input type="text" name="q" placeholder="Buscar eventos" value="{% if query %}{{ query }}{% endif %}">
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
