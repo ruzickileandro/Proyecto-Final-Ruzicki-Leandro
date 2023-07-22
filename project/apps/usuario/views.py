@@ -12,7 +12,7 @@ def crear_usuario(request: HttpRequest) -> HttpResponse:
         form = UsuarioForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("usuario:home")
+            return redirect("/home/")
     else: 
         form = UsuarioForm()
     return render(request, "usuario/crear_usuario.html", {"form": form})

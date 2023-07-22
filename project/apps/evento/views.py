@@ -3,10 +3,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from .models import Evento
 from .forms import EventoForm
-#import random
 
 def lista_eventos(request):
-    eventos = Evento.objects.all()  # Obtener todos los eventos de la base de datos
+    eventos = Evento.objects.all()
     context = {
         'eventos': eventos
     }
@@ -18,7 +17,7 @@ def crear_evento(request: HttpRequest) -> HttpResponse:
         form = EventoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("evento:home")
+            return redirect("/home/")
     else: 
         form = EventoForm()
     return render(request, "evento/crear_evento.html", {"form": form})
@@ -30,10 +29,8 @@ def buscar_eventos(request):
     eventos = None
 
     if query:
-        # Normalizar el texto de búsqueda
-        query_normalized = unidecode(query)
+        query_normalized = unidecode(query.lower())  # Convertir a minúsculas y luego aplicar unidecode
 
-        # Realizar la búsqueda sin tener en cuenta las diferencias entre mayúsculas y minúsculas y los acentos
         eventos = Evento.objects.filter(titulo__icontains=query_normalized) | Evento.objects.filter(descripcion__icontains=query_normalized)
 
     return render(request, 'evento/buscar_eventos.html', {'eventos': eventos, 'query': query})
