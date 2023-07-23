@@ -29,7 +29,7 @@ def buscar_eventos(request):
     eventos = None
 
     if query:
-        query_normalized = unidecode(query.lower())  # Convertir a minúsculas y luego aplicar unidecode
+        query_normalized = unidecode(query.lower())
 
         eventos = Evento.objects.filter(titulo__icontains=query_normalized) | Evento.objects.filter(descripcion__icontains=query_normalized)
 
