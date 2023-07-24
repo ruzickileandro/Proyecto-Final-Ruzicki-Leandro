@@ -20,13 +20,18 @@ from apps.usuario.views import crear_usuario
 from apps.evento.views import crear_evento
 from apps.evento.views import buscar_eventos
 from apps.evento.views import lista_eventos
+from apps.usuario.views import login_request
+
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', login_request, name="login"),
+    path('logout/', LogoutView.as_view(template_name='usuario/logout.html'), name="logout"),
     path('', lista_eventos, name='home'),
     path('crear_usuario/', crear_usuario, name='crear_usuario'),
     path('crear_evento/', crear_evento, name='crear_eventos'),
     path('buscar_eventos/', buscar_eventos, name='buscar_eventos'),
     path('', include('apps.evento.urls', namespace='lista_eventos')),
+     
 ]
-

@@ -7,7 +7,7 @@ app_name = "Home"
 
 urlpatterns = [
     path("", home, name="home"),
-    path('registro/', views.registro_view, name='registro'),
+    #path('registro/', views.registro_view, name='registro'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
