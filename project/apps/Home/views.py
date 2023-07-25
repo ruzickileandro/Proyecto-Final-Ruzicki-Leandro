@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # Create your views here.
 
-def home(request):
+def home_view(request):
     return render(request, "Home/base.html")
 
 def registro_view(request):

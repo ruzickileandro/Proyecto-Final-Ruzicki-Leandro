@@ -11,7 +11,7 @@
                 
                 <li class="nav-item"><a class="btn btn-bg-info" href="#!">Bienvenido: {{ user.username }}</a></li>
 
-                <form class="d-flex" action="{% url 'crear_eventos' %}" method="post">
+                <form class="d-flex" action="{% url 'evento:crear_evento' %}" method="post">
                     {% csrf_token %}
                     <button class="btn btn-outline-dark" type="submit">
                         Registrar evento
@@ -19,13 +19,13 @@
                     </button>
                 </form>
 
-                <li class="nav-item"><a class="btn btn-bg-info" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                <li class="nav-item"><a class="btn btn-bg-info" href="{% url 'usuario:logout' %}">Cerrar sesión</a></li>
 
                 {% else %}
 
                 <li class="nav-item"><a class="nav-link" href="#!">Sobre nosotros</a></li>
 
-                <form class="d-flex" action="{% url 'login' %}" method="post">
+                <form class="d-flex" action="{% url 'usuario:login' %}" method="post">
                     {% csrf_token %}
                     <button class="btn btn-outline-dark" type="submit">
                         Iniciar sesión
@@ -33,7 +33,7 @@
                     </button>
                 </form>
 
-                <form class="d-flex" action="{% url 'crear_usuario' %}" method="post">
+                <form class="d-flex" action="{% url 'usuario:crear_usuario' %}" method="post">
                     {% csrf_token %}
                     <button class="btn btn-outline-dark" type="submit">
                         Registrarse

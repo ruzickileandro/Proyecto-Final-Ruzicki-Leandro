@@ -23,7 +23,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <form class="d-flex" action="{% url 'home' %}" method="post">
+                    <form class="d-flex" action="{% url 'Home:home' %}" method="post">
                         {% csrf_token %}
                         <button class="btn btn-outline-dark" type="submit">
                             Inicio

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-from .models import Usuario
+from apps.usuario.models import Usuario
 from .forms import UsuarioForm
 
 from . import forms
