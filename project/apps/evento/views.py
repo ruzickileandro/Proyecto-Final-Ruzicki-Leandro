@@ -17,7 +17,7 @@ def crear_evento(request: HttpRequest) -> HttpResponse:
         form = EventoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/home/")
+            return redirect("Home:home")
     else: 
         form = EventoForm()
     return render(request, "evento/crear_evento.html", {"form": form})

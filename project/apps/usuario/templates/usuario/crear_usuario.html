@@ -37,7 +37,7 @@
     </nav>
     <div class="container py-5">
         <h1>Registro de usuario</h1>
-        <form action="\crear_usuario\" method="POST" class="p-3 m-3 border bg-light">
+        <form action="{% url 'usuario:crear_usuario' %}" method="POST" class="p-3 m-3 border bg-light">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
