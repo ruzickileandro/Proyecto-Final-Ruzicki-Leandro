@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 from apps.usuario.models import Usuario
+from apps.evento.models import Evento
 from .forms import UsuarioForm
 
 from . import forms
@@ -30,7 +31,7 @@ def login_request(request: HttpRequest) -> HttpResponse:
             user = authenticate(username=usuario, password=contraseña)
             if user is not None:
                 login(request, user)
-                return render(request, "Home/index.html", {"mensaje": "Iniciaste sesión correctamente"})
+                return render(request, "Home/base.html", {'eventos': Evento.objects.all()})
     else:
         form = forms.CustomAuthenticationForm()
     return render(request, "usuario/login.html", {"form": form})

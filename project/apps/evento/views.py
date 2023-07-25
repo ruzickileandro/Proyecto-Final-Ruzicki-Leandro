@@ -9,7 +9,7 @@ def lista_eventos(request):
     context = {
         'eventos': eventos
     }
-    return render(request, 'Home/base.html', context)
+    return render(request, 'Home/index.html', context)
 
 
 def crear_evento(request: HttpRequest) -> HttpResponse:
