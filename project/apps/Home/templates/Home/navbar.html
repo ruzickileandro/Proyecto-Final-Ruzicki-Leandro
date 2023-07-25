@@ -33,7 +33,7 @@
                     </button>
                 </form>
 
-                <form class="d-flex" action="{% url 'usuario:crear_usuario' %}" method="post">
+                <form class="d-flex" action="{% url 'usuario:register' %}" method="post">
                     {% csrf_token %}
                     <button class="btn btn-outline-dark" type="submit">
                         Registrarse
