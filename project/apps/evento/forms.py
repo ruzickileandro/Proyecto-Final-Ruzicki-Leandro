@@ -9,6 +9,11 @@ class EventoForm(forms.ModelForm):
 
     categoria = forms.ModelChoiceField(queryset=EventoCategoria.objects.all())
 
+class ActualizarEventoForm(forms.ModelForm):
+    class Meta:
+        model = Evento
+        fields = ['titulo', 'descripcion', 'fecha', 'categoria']
+
 def eventoFormulario(request):
  
       if request.method == "POST":
