@@ -1,7 +1,7 @@
 from unidecode import unidecode
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
-from .models import Evento
+from .models import Evento, EventoCategoria
 from .forms import EventoForm
 
 def lista_eventos(request):
@@ -20,7 +20,8 @@ def crear_evento(request: HttpRequest) -> HttpResponse:
             return redirect("Home:home")
     else: 
         form = EventoForm()
-    return render(request, "evento/crear_evento.html", {"form": form})
+    categorias = EventoCategoria.objects.all()
+    return render(request, "evento/crear_evento.html", {"form": form, "categorias": categorias})
 
 
 

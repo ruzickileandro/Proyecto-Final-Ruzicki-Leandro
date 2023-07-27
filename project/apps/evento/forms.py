@@ -1,11 +1,13 @@
 from django import forms
-from apps.evento.models import Evento
+from apps.evento.models import Evento, EventoCategoria
 from django.shortcuts import render
 
 class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
         fields = ['titulo', 'descripcion', 'fecha', 'categoria']
+
+    categoria = forms.ModelChoiceField(queryset=EventoCategoria.objects.all())
 
 def eventoFormulario(request):
  

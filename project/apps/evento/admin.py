@@ -1,4 +1,5 @@
 from django.contrib import admin
-from . import models
+from .models import Evento, EventoCategoria
 
-admin.site.register(models.Evento)
+admin.site.register(Evento)
+admin.site.register(EventoCategoria)

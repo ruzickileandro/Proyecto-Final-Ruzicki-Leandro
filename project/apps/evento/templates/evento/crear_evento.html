@@ -54,7 +54,11 @@
             </div>
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoría:</label>
-                <input type="text" name="categoria" class="form-control" id="categoria">
+                <select name="categoria" class="form-select" id="categoria">
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
