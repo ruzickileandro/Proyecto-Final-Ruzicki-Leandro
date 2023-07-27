@@ -13,13 +13,22 @@
                     <li class="nav-item"><a class="nav-link" href="#!">Sobre nosotros</a></li>
 
                     {% if user.is_staff %}
-                        <form class="d-flex" action="{% url 'evento:crear_evento' %}" method="post">
-                            {% csrf_token %}
-                            <button class="btn btn-outline-dark" type="submit">
-                                Registrar evento
-                                <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="administrarEventosDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Administrar eventos
                             </button>
-                        </form>
+                            <ul class="dropdown-menu" aria-labelledby="administrarEventosDropdown">
+                                <li>
+                                    <form class="d-flex" action="{% url 'evento:crear_evento' %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="dropdown-item btn btn-link" type="submit">Añadir</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item btn btn-link" href="{% url 'evento:lista_eventos' %}">Listar</a>
+                                </li>
+                            </ul>
+                        </div>
                     {% endif %}
 
                 {% else %}
