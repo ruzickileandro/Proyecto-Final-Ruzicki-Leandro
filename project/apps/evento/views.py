@@ -48,7 +48,6 @@ def buscar_eventos(request):
 
 def actualizar_evento(request, evento_id):
     evento = get_object_or_404(Evento, id=evento_id)
-
     if request.method == "POST":
         form = ActualizarEventoForm(request.POST, instance=evento)
         if form.is_valid():
@@ -56,6 +55,11 @@ def actualizar_evento(request, evento_id):
             return redirect('evento:lista_categorias')
     else:
         form = ActualizarEventoForm(instance=evento)
-
     return render(request, 'evento/actualizar_evento.html', {'form': form})
 
+def eliminar_evento(request, evento_id):
+    evento = get_object_or_404(Evento, id=evento_id)
+    if request.method == 'POST':
+        evento.delete()
+        return redirect('evento:lista_categorias')
+    return render(request, 'eliminar_evento.html', {'evento': evento})

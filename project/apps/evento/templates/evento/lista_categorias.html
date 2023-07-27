@@ -39,27 +39,57 @@
             color: #000;
             margin-bottom: 0;
         }
+
+        .btn-inicio {
+            background-color: #fff;
+            border: 1px solid #000;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .btn-inicio:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .btn-actualizar {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            width: 100px;
+        }
+
+        .btn-actualizar:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-eliminar {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+            width: 100px;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-            <form class="d-flex" action="{% url 'Home:home' %}" method="post">
-                {% csrf_token %}
-                <button class="btn btn-outline-dark" type="submit">
-                    Inicio
-                    <span class="badge bg-dark text-white ms-1 rounded-pill"></span>
-                </button>
-            </form>
-        </ul>
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="#!"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'evento:lista_categorias' %}">Listar categorías</a>
-                    </li>
+                    <form class="d-flex" action="{% url 'Home:home' %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-inicio" type="submit">
+                            Inicio
+                        </button>
+                    </form>
                 </ul>
             </div>
         </div>
@@ -72,7 +102,12 @@
                 <h2>{{ categoria.nombre }}</h2>
                 <ul>
                     {% for evento in eventos %}
-                        <li>{{ evento.titulo }} - <a href="{% url 'evento:actualizar_evento' evento.id %}">Actualizar</a> </li>
+                        <li>{{ evento.titulo }} - <a class="btn btn-actualizar" href="{% url 'evento:actualizar_evento' evento.id %}">Actualizar</a> 
+                            <form class="d-inline" action="{% url 'evento:eliminar_evento' evento.id %}" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar este evento?');">
+                                {% csrf_token %}
+                                <button class="btn btn-eliminar btn-sm" type="submit">Eliminar</button>
+                            </form>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
