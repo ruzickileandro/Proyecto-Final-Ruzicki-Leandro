@@ -1,9 +1,11 @@
 from django.db import models
 from apps.evento.models import Evento
 from apps.usuario.models import Usuario
+from django.contrib.auth import get_user_model
 
 class Registro(models.Model):
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    fecha_registro = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.evento
+        return f"Usuario: {self.usuario.user} - Evento: {self.evento.titulo}"

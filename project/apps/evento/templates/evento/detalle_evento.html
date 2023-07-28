@@ -1,13 +1,52 @@
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-warning">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Agrega las etiquetas meta, título, estilos CSS y enlaces a archivos JS que necesites -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Evento - {{ evento.titulo }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #343a40;
+            color: #fff;
+        }
+        h1 {
+            color: #fff;
+        }
+    </style>
+
 </head>
 <body>
-    <h1>{{ evento.titulo }}</h1>
-    <p>{{ evento.descripcion }}</p>
-    <p>Fecha: {{ evento.fecha }}</p>
-    <p>Categoría: {{ evento.categoria }}</p>
-    <!-- Puedes mostrar más detalles según tus necesidades -->
+    <div class="container py-5">
+        <h1>{{ evento.titulo }}</h1>
+        <p>{{ evento.descripcion }}</p>
+        <p>Fecha: {{ evento.fecha }}</p>
+        <p>Categoría: {{ evento.categoria }}</p>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'registro:registrar_interes' evento.id %}" class="d-inline-block">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Me interesa</button>
+            </form>
+            <form method="post" action="{% url 'Home:home' %}" class="d-inline-block">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Volver</button>
+            </form>
+        {% else %}
+            <p>Debes iniciar sesión para mostrar tu interés en este evento.</p>
+            <a href="{% url 'usuario:login' %}" class="btn btn-primary">Iniciar sesión</a>
+        {% endif %}
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

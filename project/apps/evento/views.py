@@ -1,5 +1,7 @@
 from unidecode import unidecode
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpRequest
 from .models import Evento, EventoCategoria
 from .forms import EventoForm
@@ -33,8 +35,6 @@ def crear_evento(request: HttpRequest) -> HttpResponse:
     categorias = EventoCategoria.objects.all()
     return render(request, "evento/crear_evento.html", {"form": form, "categorias": categorias})
 
-
-
 def buscar_eventos(request):
     query = request.GET.get('q', '')
     eventos = None
@@ -64,6 +64,7 @@ def eliminar_evento(request, evento_id):
         return redirect('evento:lista_categorias')
     return render(request, 'eliminar_evento.html', {'evento': evento})
 
+@login_required(login_url=reverse_lazy('usuario:login'))
 def detalle_evento(request, evento_id):
     evento = get_object_or_404(Evento, id=evento_id)
     return render(request, 'evento/detalle_evento.html', {'evento': evento})
