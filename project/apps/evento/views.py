@@ -63,3 +63,7 @@ def eliminar_evento(request, evento_id):
         evento.delete()
         return redirect('evento:lista_categorias')
     return render(request, 'eliminar_evento.html', {'evento': evento})
+
+def detalle_evento(request, evento_id):
+    evento = get_object_or_404(Evento, id=evento_id)
+    return render(request, 'evento/detalle_evento.html', {'evento': evento})
