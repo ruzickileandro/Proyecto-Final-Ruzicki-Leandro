@@ -62,7 +62,7 @@
 <body>
     <div class="container">
         <h1>Actualizar Evento</h1>
-        <form action="" method="POST" class="p-3 m-3 border bg-light">
+        <form action="" method="POST" class="p-3 m-3 border bg-light" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="id_titulo">Titulo:</label>
@@ -79,6 +79,18 @@
             <div class="form-group">
                 <label for="id_categoria">Categoría:</label>
                 <p>{{ form.categoria }}</p>
+            </div>
+            <div class="form-group">
+                <label for="id_imagen">Imagen actual:</label>
+                {% if form.instance.imagen %}
+                    <img src="{{ form.instance.imagen.url }}" alt="{{ form.instance.titulo }}" style="max-height: 200px;">
+                {% else %}
+                    <p>No se ha seleccionado una imagen.</p>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_imagen">Nueva imagen:</label>
+                {{ form.imagen }}
             </div>
             <button type="submit" class="btn btn-primary">Guardar cambios</button>
             <a href="{% url 'evento:lista_categorias' %}" class="btn btn-cancelar">Cancelar</a>

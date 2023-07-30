@@ -8,7 +8,7 @@ from .forms import EventoForm
 from apps.evento.forms import ActualizarEventoForm
 
 def lista_eventos(request):
-    eventos = Evento.objects.all()
+    eventos = Evento.objects.all().order_by('fecha')
     context = {
         'eventos': eventos
     }
@@ -26,7 +26,7 @@ def lista_categorias(request):
 
 def crear_evento(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
-        form = EventoForm(request.POST)
+        form = EventoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("Home:home")
@@ -49,7 +49,7 @@ def buscar_eventos(request):
 def actualizar_evento(request, evento_id):
     evento = get_object_or_404(Evento, id=evento_id)
     if request.method == "POST":
-        form = ActualizarEventoForm(request.POST, instance=evento)
+        form = ActualizarEventoForm(request.POST, request.FILES, instance=evento)
         if form.is_valid():
             form.save()
             return redirect('evento:lista_categorias')

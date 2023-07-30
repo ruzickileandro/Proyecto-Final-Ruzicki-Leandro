@@ -10,7 +10,13 @@
             {% for evento in eventos %}
             <div class="col mb-5">
                 <div class="card h-100">
-                    <!-- Product details-->
+                    {% if evento.imagen %}
+                    <!-- Event image -->
+                        <img src="{{ evento.imagen.url }}" class="card-img-top">
+                    {% else %}
+                    <!-- Placeholder image -->
+                        <img src="{% static 'evento/img/placeholder.jpg' %}" class="card-img-top">
+                    {% endif %}
                     <div class="card-body p-4">
                         <div class="text-center">
                             <!-- Event category-->
@@ -23,7 +29,7 @@
                     </div>
                     <!-- Event actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'evento:detalle_evento' evento.id %}">Ver detalles</a></div>
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'evento:detalle_evento' evento.id %}">Ver más detalles</a></div>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,18 @@
             background-color: #343a40;
             color: #fff;
         }
+        .event-title {
+            border: 1px solid #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .event-description {
+            border: 1px solid #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
         h1 {
             color: #fff;
         }
@@ -27,10 +39,14 @@
 </head>
 <body>
     <div class="container py-5">
-        <h1>{{ evento.titulo }}</h1>
-        <p>{{ evento.descripcion }}</p>
-        <p>Fecha: {{ evento.fecha }}</p>
-        <p>Categoría: {{ evento.categoria }}</p>
+        <div class="event-title" align="center">
+            <h1>{{ evento.titulo }}</h1>
+        </div>
+        <div class="event-description">
+            <p>{{ evento.descripcion }}</p>
+            <p>Fecha: {{ evento.fecha }}</p>
+            <p>{{ evento.categoria }}</p>
+        </div>
         {% if user.is_authenticated %}
             <form method="post" action="{% url 'registro:registrar_interes' evento.id %}" class="d-inline-block">
                 {% csrf_token %}
@@ -49,4 +65,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">CoderHouse Python - 43860 &copy; Leandro Ruzicki</p></div>
+</footer>
+
 </html>

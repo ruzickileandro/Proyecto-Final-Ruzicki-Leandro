@@ -31,7 +31,7 @@ def login_request(request: HttpRequest) -> HttpResponse:
             user = authenticate(username=usuario, password=contraseña)
             if user is not None:
                 login(request, user)
-                return render(request, "Home/base.html", {'eventos': Evento.objects.all()})
+                return render(request, "Home/base.html", {'eventos': Evento.objects.all().order_by('fecha')})
     else:
         form = forms.CustomAuthenticationForm()
     return render(request, "usuario/login.html", {"form": form})

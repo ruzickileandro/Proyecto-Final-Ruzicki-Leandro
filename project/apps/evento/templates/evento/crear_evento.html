@@ -38,7 +38,7 @@
     </nav>
     <div class="container py-5">
         <h1>Registro de eventos</h1>
-        <form action="{% url 'evento:crear_evento' %}" method="POST" class="p-3 m-3 border bg-light">
+        <form action="{% url 'evento:crear_evento' %}" method="POST" enctype="multipart/form-data" class="p-3 m-3 border bg-light">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="titulo" class="form-label">Título:</label>
@@ -59,6 +59,10 @@
                         <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
                     {% endfor %}
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen:</label>
+                <input type="file" name="imagen" class="form-control" id="imagen">
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>

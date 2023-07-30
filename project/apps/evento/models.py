@@ -12,6 +12,7 @@ class Evento(models.Model):
     descripcion = models.TextField()
     fecha = models.DateField()
     categoria = models.ForeignKey(EventoCategoria, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='evento/', blank=True, null=True)
     def __str__(self):
        return f"{self.fecha.strftime('%d/%m/%Y')} : {self.titulo}"
     

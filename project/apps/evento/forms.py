@@ -5,14 +5,15 @@ from django.shortcuts import render
 class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
-        fields = ['titulo', 'descripcion', 'fecha', 'categoria']
+        fields = ['titulo', 'descripcion', 'fecha', 'categoria', 'imagen']
 
     categoria = forms.ModelChoiceField(queryset=EventoCategoria.objects.all())
+    imagen = forms.ImageField(widget=forms.FileInput)
 
 class ActualizarEventoForm(forms.ModelForm):
     class Meta:
         model = Evento
-        fields = ['titulo', 'descripcion', 'fecha', 'categoria']
+        fields = ['titulo', 'descripcion', 'fecha', 'categoria', 'imagen']
 
 def eventoFormulario(request):
  
@@ -26,7 +27,8 @@ def eventoFormulario(request):
                   usuario = Evento(titulo=informacion["titulo"],
                                    descripcion=informacion["descripcion"],
                                    fecha=informacion["fecha"],
-                                   categoria=informacion["categoria"])
+                                   categoria=informacion["categoria"],
+                                   imagen=informacion["imagen"])
                   usuario.save()
                   return render(request, "Home/base.html")
       else:
