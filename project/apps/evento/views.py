@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpRequest
 from .models import Evento, EventoCategoria
 from .forms import EventoForm
 from apps.evento.forms import ActualizarEventoForm
+from django.db.models import Q
 
 def lista_eventos(request):
     eventos = Evento.objects.all().order_by('fecha')
@@ -40,9 +41,11 @@ def buscar_eventos(request):
     eventos = None
 
     if query:
-        query_normalized = unidecode(query.lower())
+        query_normalized = query.lower()
 
-        eventos = Evento.objects.filter(titulo__icontains=query_normalized) | Evento.objects.filter(descripcion__icontains=query_normalized)
+        eventos = Evento.objects.filter(
+            Q(titulo__icontains=query_normalized) | Q(descripcion__icontains=query_normalized)
+        ).distinct()
 
     return render(request, 'evento/buscar_eventos.html', {'eventos': eventos, 'query': query})
 
