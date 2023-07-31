@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect
-from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import render
 from django.contrib import messages
 from .models import Registro
 from apps.evento.models import Evento
@@ -20,3 +21,27 @@ def registrar_interes(request, evento_id):
         return redirect('evento:detalle_evento', evento_id=evento_id)
     else:
         return redirect('usuario:login')
+    
+def lista_usuarios_eventos(request):
+    registros = Registro.objects.select_related('usuario', 'evento').all()
+
+    usuarios_intereses = {}
+    for registro in registros:
+        usuario = registro.usuario
+        evento = registro.evento
+
+        if usuario not in usuarios_intereses:
+            usuarios_intereses[usuario] = []
+        
+        usuarios_intereses[usuario].append(evento)
+
+    return render(request, 'registro/lista_usuarios_eventos.html', {'usuarios_intereses': usuarios_intereses})
+
+@staff_member_required
+def eliminar_registro(request, evento_id):
+    registro = get_object_or_404(Registro, evento_id=evento_id)
+
+    if request.method == 'POST':
+        registro.delete()
+        messages.success(request, 'Registro eliminado correctamente.')
+    return redirect('registro:lista_usuarios_eventos')
