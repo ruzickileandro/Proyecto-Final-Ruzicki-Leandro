@@ -1,5 +1,4 @@
-from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth import login, authenticate
 from apps.usuario.models import Usuario

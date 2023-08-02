@@ -1,0 +1,41 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Sobre mí</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'Home/assets/favicon.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'Home/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        {% include 'Home/navbar.html'%}
+
+        <div class="container mt-5 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Proin sodales urna vel magna dapibus tincidunt. 
+                                Etiam interdum dolor ut mauris semper congue. 
+                                Proin sagittis eget nisi nec ultricies. 
+                                Quisque interdum est ut tortor volutpat eleifend. 
+                                Suspendisse potenti. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'Home/footer.html' %}
+    </body>
