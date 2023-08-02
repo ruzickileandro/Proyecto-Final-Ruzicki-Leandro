@@ -26,10 +26,13 @@
                                 <li>
                                     <a class="dropdown-item btn btn-link" href="{% url 'evento:lista_categorias' %}">Listar categorías</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="dropdown-item btn btn-link" href="{% url 'registro:lista_usuarios_eventos' %}">Listar registros</a>
+                                </li>
                             </ul>
                         </div>
                         <li class="nav-item">
-                            <a class="btn btn-outline-dark" href="{% url 'registro:lista_usuarios_eventos' %}">Listar registros</a>
+                            <a class="btn btn-outline-dark" href="{% url 'admin:index' %}">Panel de administración</a>
                         </li>
                         {% else %}
                         <li class="nav-item"><a class="btn btn-outline-dark" href="{% url 'Home:about' %}">Acerca de mí</a></li>
