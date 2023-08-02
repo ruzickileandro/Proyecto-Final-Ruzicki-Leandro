@@ -38,8 +38,8 @@ def lista_usuarios_eventos(request):
     return render(request, 'registro/lista_usuarios_eventos.html', {'usuarios_intereses': usuarios_intereses})
 
 @staff_member_required
-def eliminar_registro(request, evento_id):
-    registro = get_object_or_404(Registro, evento_id=evento_id)
+def eliminar_registro(request, usuario_id, evento_id):
+    registro = get_object_or_404(Registro, usuario_id=usuario_id, evento_id=evento_id)
 
     if request.method == 'POST':
         registro.delete()

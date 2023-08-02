@@ -10,7 +10,6 @@
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="btn btn-bg-info" href="#!">Bienvenido: {{ user.username }}</a></li>
                     <li class="nav-item"><a class="btn btn-outline-dark" href="{% url 'usuario:logout' %}">Cerrar sesión</a></li>
-                    <li class="nav-item"><a class="btn btn-outline-dark" href="{% url 'Home:about' %}">Acerca de mí</a></li>
 
                     {% if user.is_staff %}
                         <div class="dropdown">
@@ -32,6 +31,9 @@
                         <li class="nav-item">
                             <a class="btn btn-outline-dark" href="{% url 'registro:lista_usuarios_eventos' %}">Listar registros</a>
                         </li>
+                        {% else %}
+                        <li class="nav-item"><a class="btn btn-outline-dark" href="{% url 'Home:about' %}">Acerca de mí</a></li>
+                        
                     {% endif %}
 
                 {% else %}
