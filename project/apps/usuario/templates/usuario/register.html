@@ -37,6 +37,11 @@
     </nav>
     <div class="container py-5">
         <h1>Registro de usuario</h1>
+        {% if mensaje %}
+        <div class="alert alert-success">
+            {{ mensaje }}
+        </div>
+        {% endif %}
         <form action="{% url 'usuario:register' %}" method="POST" class="p-3 m-3 border bg-light">
             {% csrf_token %}
             {{ form.as_p }}
