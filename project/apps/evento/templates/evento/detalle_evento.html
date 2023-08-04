@@ -48,10 +48,17 @@
             <p>{{ evento.categoria }}</p>
         </div>
         {% if user.is_authenticated %}
-            <form method="post" action="{% url 'registro:registrar_interes' evento.id %}" class="d-inline-block">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Me interesa</button>
-            </form>
+            {% if registrado %}
+                <form method="post" action="{% url 'registro:quitar_interes' evento.id %}" class="d-inline-block">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Ya no me interesa</button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'registro:registrar_interes' evento.id %}" class="d-inline-block">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Me interesa</button>
+                </form>
+            {% endif %}
             <form method="post" action="{% url 'Home:home' %}" class="d-inline-block">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-primary">Volver</button>

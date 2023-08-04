@@ -41,7 +41,7 @@ Incluído en la vista principal, el cual permite filtrar por nombre del evento.
 Se puede filtrar por una fracción de la palabra a buscar o bien, el nombre completo del evento.
     Botón "Inicio": me devuelve a la página principal.
 El resultado se mostrará en otra vista con la posibilidad de hacer clic en el botón "Ver más detalles"(http://127.0.0.1:8000/evento/detalle/"id del evento"), el cual llevará al usuario a otra vista que mostrará una descripción más completa del evento.
-Allí mismo tendrá la posiblidad de hacer clic en el botón "Me interesa" confirmado su registro al evento en la base de datos.
+Allí mismo tendrá la posiblidad de hacer clic en el botón "Me interesa" confirmado su registro al evento en la base de datos o en "Ya no me interesa" en el caso que quiera darse de baja en la suscripción.
 A su vez, tendrá la opción de regresar a la web principal con el botón "Volver"
 
 Vista de admin:

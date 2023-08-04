@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import Registro
 from apps.evento.models import Evento
@@ -22,6 +23,15 @@ def registrar_interes(request, evento_id):
     else:
         return redirect('usuario:login')
     
+@login_required(login_url=reverse_lazy('usuario:login'))
+def quitar_interes(request, evento_id):
+    evento = get_object_or_404(Evento, id=evento_id)
+    registro = Registro.objects.filter(evento=evento, usuario=request.user).first()
+    if registro:
+        registro.delete()
+        messages.success(request, 'Te desuscribiste de este evento.')
+    return redirect('evento:detalle_evento', evento_id=evento_id)
+
 def lista_usuarios_eventos(request):
     registros = Registro.objects.select_related('usuario', 'evento').all()
 

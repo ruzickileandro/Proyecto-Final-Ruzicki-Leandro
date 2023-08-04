@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpRequest
 from .models import Evento, EventoCategoria
+from apps.registro.models import Registro
 from .forms import EventoForm
 from apps.evento.forms import ActualizarEventoForm
 from django.db.models import Q
@@ -70,4 +71,6 @@ def eliminar_evento(request, evento_id):
 @login_required(login_url=reverse_lazy('usuario:login'))
 def detalle_evento(request, evento_id):
     evento = get_object_or_404(Evento, id=evento_id)
-    return render(request, 'evento/detalle_evento.html', {'evento': evento})
+    usuario = request.user
+    registrado = Registro.objects.filter(evento=evento, usuario=usuario).exists()
+    return render(request, 'evento/detalle_evento.html', {'evento': evento, 'registrado': registrado})
