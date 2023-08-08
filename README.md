@@ -4,6 +4,10 @@
 
 En este sitio la idea es que el usuario pueda ver los eventos deportivos a desarrollarse en la ciudad y en caso de interesarse por alguno, poder registrarse para recibir más detalles vía mail.
 
+# Video demostración
+
+https://drive.google.com/file/d/12DXCuqMUme46UfBuC9PBGGCf_rS88VgD/view?usp=drive_link
+
 # Ingreso: admin
 
 http://127.0.0.1:8000/admin/
